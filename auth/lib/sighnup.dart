@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'login.dart';
 
 class RegisterApp extends StatelessWidget {
   @override
@@ -42,6 +45,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   final TextEditingController heightController = TextEditingController();
   final TextEditingController weightController = TextEditingController();
   final TextEditingController bmiController = TextEditingController();
@@ -57,6 +61,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     nameController.dispose();
     ageController.dispose();
     emailController.dispose();
+    passwordController.dispose();
     heightController.dispose();
     weightController.dispose();
     bmiController.dispose();
@@ -74,7 +79,52 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
   }
 
-  // Build the form
+  // Function to submit form data to the REST API
+  Future<void> _submitData() async {
+    final String url = 'http://localhost:8080/register';  // Replace with your API URL
+
+    // Collecting form data
+    Map<String, dynamic> formData = {
+      'name': nameController.text,
+      'age': int.tryParse(ageController.text),
+      'email': emailController.text,
+      'password': passwordController.text,  // Password field
+      'height': double.tryParse(heightController.text),
+      'weight': double.tryParse(weightController.text),
+      'bmi': double.tryParse(bmiController.text),
+      'calories': int.tryParse(caloriesController.text),
+      'activity': activityController.text,
+      'picture': picture,
+      'waterintaketarget': double.tryParse(waterIntakeTargetController.text),
+      'waterconsumed': double.tryParse(waterConsumedController.text),
+    };
+
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(formData),
+      );
+
+      if (response.statusCode == 200) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Login()),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to submit data')),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $e')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,6 +170,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 validator: (value) {
                   if (value == null || value.isEmpty || !value.contains('@')) {
                     return 'Please enter a valid email';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 16),
+              // Password
+              TextFormField(
+                controller: passwordController,
+                decoration: InputDecoration(labelText: 'Password'),
+                obscureText: true,  // Hides password input
+                validator: (value) {
+                  if (value == null || value.isEmpty || value.length < 6) {
+                    return 'Password must be at least 6 characters long';
                   }
                   return null;
                 },
@@ -235,9 +298,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     // Process form data
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Processing Data')),
-                    );
+                    _submitData();
                   }
                 },
                 child: Text('Submit', style: TextStyle(fontSize: 18)),

@@ -2,6 +2,7 @@ package fit.app.entities;
 
 import fit.app.dto.ProfileRequest;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -18,8 +19,13 @@ public class Profile {
     private int calories;   // calories per day
     private String activity;
     private String picture;  // can be a URL or a file path
-    private double waterIntakeTarget;  // in ml
+    @Column(name = "waterintaketarget")// in ml
+    private double waterIntakeTarget;
+    @Column(name = "waterconsumed")// in ml
     private double waterConsumed;
+
+    public Profile() {
+    }
 
     public Profile(ProfileRequest profileRequest) {
         this.email = profileRequest.getEmail();
@@ -31,8 +37,8 @@ public class Profile {
         this.calories = profileRequest.getCalories();
         this.activity = profileRequest.getActivity();
         this.picture = profileRequest.getPicture();
-        this.waterIntakeTarget = profileRequest.getWaterIntakeTarget();
-        this.waterConsumed = profileRequest.getWaterConsumed();
+        this.waterIntakeTarget = profileRequest.getWaterintaketarget();
+        this.waterConsumed = profileRequest.getWaterconsumed();
     }
 
     // Getters and Setters

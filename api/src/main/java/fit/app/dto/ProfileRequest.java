@@ -11,25 +11,18 @@ public class ProfileRequest {
     private int calories;   // calories per day
     private String activity;
     private String picture;  // can be a URL or a file path
-    private double waterIntakeTarget;  // in ml
-    private double waterConsumed;
-    private String passWord;
+    private double waterintaketarget;  // in ml
+    private double waterconsumed;
+    private String password;
 
     public String getEmail() {
         return email;
     }
 
     public String getPassWord() {
-        return passWord;
+        return password;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getName() {
         return name;
@@ -87,6 +80,34 @@ public class ProfileRequest {
         this.activity = activity;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public double getWaterintaketarget() {
+        return waterintaketarget;
+    }
+
+    public void setWaterintaketarget(double waterintaketarget) {
+        this.waterintaketarget = waterintaketarget;
+    }
+
+    public double getWaterconsumed() {
+        return waterconsumed;
+    }
+
+    public void setWaterconsumed(double waterconsumed) {
+        this.waterconsumed = waterconsumed;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getPicture() {
         return picture;
     }
@@ -95,19 +116,5 @@ public class ProfileRequest {
         this.picture = picture;
     }
 
-    public double getWaterIntakeTarget() {
-        return waterIntakeTarget;
-    }
 
-    public void setWaterIntakeTarget(double waterIntakeTarget) {
-        this.waterIntakeTarget = waterIntakeTarget;
-    }
-
-    public double getWaterConsumed() {
-        return waterConsumed;
-    }
-
-    public void setWaterConsumed(double waterConsumed) {
-        this.waterConsumed = waterConsumed;
-    }
 }

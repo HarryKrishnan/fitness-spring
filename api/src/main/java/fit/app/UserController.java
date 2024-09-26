@@ -7,6 +7,7 @@ import fit.app.service.FitService;
 import fit.app.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,10 +22,12 @@ public class UserController {
     private LoginService loginService;
 
     @PostMapping("/register")
+    @CrossOrigin("*")
     public ResponseEntity<String> Register(@RequestBody ProfileRequest profile) {
         return ResponseEntity.ok(fitService.registerUser(profile));
     }
     @PostMapping("/login")
+    @CrossOrigin("*")
     public ResponseEntity<String> Login(@RequestBody Login login)  {
         return ResponseEntity.ok(loginService.login(login));
     }
