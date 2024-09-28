@@ -1,4 +1,4 @@
-package io.mahesh.api;
+package fit.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

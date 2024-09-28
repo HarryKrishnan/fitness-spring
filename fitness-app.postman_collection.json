@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "79b152da-997a-4532-bf86-11bc7d777ebe",
+		"name": "fitness-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16265533"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJGUWJmT1B1NG4wamYzVFNGdE94c0dRMHFkeTlDZmFYV3ZSNVY4QkxLdHl3In0.eyJleHAiOjE3MTI4NDA2OTAsImlhdCI6MTcxMjg0MDM5MCwianRpIjoiN2U1NTUzNzYtMDllMy00ZWFjLWIxOTAtZjgwMDQ1NGEwNDU1IiwiaXNzIjoiaHR0cHM6Ly9wb3J0YWwuYm9zY2gtbmV4ZWVkLmNvbS9pYW0vYXV0aC9yZWFsbXMvYzkwYThjZWItY2Q1OS00N2M4LTkwY2UtY2EwMWNjNjI5MWZiIiwiYXVkIjoicTdyNjJkeDRmNDY2MWVlOWI2NDl2bmRlOCIsInN1YiI6ImU2MTE5ZmQ1LTRhMTItNGQzNS1iMjYwLWNlOTQ3N2M3YmZkZCIsInR5cCI6IkJlYXJlciIsImF6cCI6InE3cjYyZHg0ZjQ2NjFlZTliNjQ5dm5kZTgiLCJhY3IiOiIxIiwic2NvcGUiOiJOZXhlZWRfSUFNIGF1ZDpxN3I2MmR4NGY0NjYxZWU5YjY0OXZuZGU4IG9wZW5pZCBwcm9maWxlIGVtYWlsIiwiY2xpZW50SG9zdCI6IjE5NC4zOS4yMTguMTkiLCJ0bmFtZSI6IkJhdHRlcnkgUGFzc3BvcnQgREVWIiwiY2xpZW50QWRkcmVzcyI6IjE5NC4zOS4yMTguMTkiLCJjbGllbnRfaWQiOiJxN3I2MmR4NGY0NjYxZWU5YjY0OXZuZGU4IiwidGlkIjoiYzkwYThjZWItY2Q1OS00N2M4LTkwY2UtY2EwMWNjNjI5MWZiIn0.GoxvaTkCfDEmMJhoh1lvkhJIa54TzHGKfFT0FUaY2TZsstYDFkL-Kd184jJXlsg5tvjfb2Uu4uNOidMvy6GCcrVLpEphO7vBrmRV3mqpn2zJVyNPcBimlse_ymYD4axjYwK_Sa-sxz_LSUJIbsBQWih7X25oJEzS8xQKJBY6LQcfJbqhg8XGhg8KW_jFnSuwK6RGdF_XaT4Lza5E_tuFDYqo6SjPWb3C9t6H1-c2okHUDdAamij6crvvE1DUGTVXR7I1DaaRyeOVrzpFCU4TLU13OnaqNgPz-WhnGkd1NjwI1iyU8VIu3cWXInxtb6vPGXxUOR5odTg-WddHG-oOCw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"Alice Brown\",\"password\":\"password789\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "saveprofile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"securepassword123\",\n  \"age\": 30,\n  \"height\": 180,\n  \"weight\": 75,\n  \"bmi\": 23,\n  \"calories\": 2500,\n  \"activity\": \"Running\",\n  \"picture\": \"profile-picture-url.jpg\",\n  \"waterintaketarget\": 3000,\n  \"waterconsumed\": 1500\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getprofile",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/profile?email=john.doe@example.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"profile"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "john.doe@example.com"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:auth/sighnup.dart';
 import 'package:auth/user.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,7 +13,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   User user = User("", "");
-  final String url = "http://localhost:9000/login";
+  final String url = "http://localhost:8080/login";
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -173,7 +174,7 @@ class _LoginState extends State<Login> {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Register()),
+                              MaterialPageRoute(builder: (context) => RegisterApp()),
                             );
                           },
                           child: Text(
